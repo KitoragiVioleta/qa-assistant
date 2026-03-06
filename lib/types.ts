@@ -25,12 +25,14 @@ export type GenerateErrorResponse = {
   };
 };
 
+export type ResultType = TestCasesResult | BugReportResult | ApiIdeasResult;
+
 export type HistoryItem = {
   id: string;
   created_at: string;
   mode: Mode;
   input_fields: Record<string, unknown>;
-  output: unknown;
+  output: ResultType;
 };
 
 export type TestCase = {
