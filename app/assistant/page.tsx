@@ -157,7 +157,7 @@ export default function AssistantPage() {
   const [testCaseFields, setTestCaseFields] = useState<TestCaseFields>(initialTestCaseFields);
   const [bugReportFields, setBugReportFields] = useState<BugReportFields>(initialBugReportFields);
   const [apiTestFields, setApiTestFields] = useState<ApiTestFields>(initialApiTestFields);
-  const [result, setResult] = useState<unknown>(null);
+  const [result, setResult] = useState<TestCasesResult | BugReportResult | ApiIdeasResult | null>(null);
   const [resultMode, setResultMode] = useState<TabKey | null>(null);
   const [resultTimestamp, setResultTimestamp] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
