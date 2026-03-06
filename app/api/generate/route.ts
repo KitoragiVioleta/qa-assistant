@@ -11,6 +11,10 @@ function tryParseJson(raw: string) {
   return JSON.parse(raw.trim());
 }
 
+function getErrorMessage(error: unknown, fallback: string) {
+  return error instanceof Error ? error.message : fallback;
+}
+
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as GenerateRequest;
@@ -40,9 +44,9 @@ export async function POST(req: Request) {
         system: SYSTEM_PROMPT,
         user: userPrompt
       });
-    } catch (e: any) {
+    } catch (e: unknown) {
       return NextResponse.json(
-        { error: { code: "LLM_UNAVAILABLE", message: e?.message || "LLM unavailable" } },
+        { error: { code: "LLM_UNAVAILABLE", message: getErrorMessage(e, "LLM unavailable") } },
         { status: 502 }
       );
     }
@@ -72,9 +76,9 @@ export async function POST(req: Request) {
       result,
       raw_llm_text: rawText
     });
-  } catch (e: any) {
+  } catch (e: unknown) {
     return NextResponse.json(
-      { error: { code: "INTERNAL", message: e?.message || "Internal error" } },
+      { error: { code: "INTERNAL", message: getErrorMessage(e, "Internal error") } },
       { status: 500 }
     );
   }

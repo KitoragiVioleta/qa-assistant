@@ -48,15 +48,11 @@ const TIPS = [
 ];
 
 export default function ContextPage() {
-  const [projectContext, setProjectContext] = useState("");
+  const [projectContext, setProjectContext] = useState(() => loadContext());
   const [autoSaveIndicator, setAutoSaveIndicator] = useState(false);
   const [copied, setCopied] = useState(false);
   const [tipsOpen, setTipsOpen] = useState(false);
   const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    setProjectContext(loadContext());
-  }, []);
 
   // Auto-save with debounce
   useEffect(() => {

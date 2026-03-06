@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { Fragment, useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import type { Mode, HistoryItem, TestCasesResult, BugReportResult, ApiIdeasResult, ResultType } from "@/lib/types";
 import { loadHistory, addHistoryItem, loadContext, saveContext, loadDraft, saveDraft, removeHistoryItem, clearHistory } from "@/lib/history";
@@ -1196,9 +1196,8 @@ function TestCasesResultView({
           </thead>
           <tbody className="divide-y divide-border">
             {filtered.map((tc) => (
-              <>
+              <Fragment key={tc.id}>
                 <tr
-                  key={tc.id}
                   className="cursor-pointer hover:bg-input/50 transition-colors"
                   onClick={() => onToggleExpand(expandedId === tc.id ? null : tc.id)}
                 >
@@ -1219,7 +1218,7 @@ function TestCasesResultView({
                   </td>
                 </tr>
                 {expandedId === tc.id && (
-                  <tr key={`${tc.id}-details`}>
+                  <tr>
                     <td colSpan={5} className="bg-input/30 px-4 py-4">
                       <div className="space-y-3">
                         {tc.preconditions?.length > 0 && (
@@ -1255,7 +1254,7 @@ function TestCasesResultView({
                     </td>
                   </tr>
                 )}
-              </>
+              </Fragment>
             ))}
           </tbody>
         </table>

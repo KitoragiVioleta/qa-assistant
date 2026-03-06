@@ -28,15 +28,11 @@ const modeColors: Record<Mode, string> = {
 type FilterMode = "all" | Mode;
 
 export default function HistoryPage() {
-  const [historyItems, setHistoryItems] = useState<HistoryItem[]>([]);
+  const [historyItems, setHistoryItems] = useState<HistoryItem[]>(() => loadHistory());
   const [filter, setFilter] = useState<FilterMode>("all");
   const [viewingItem, setViewingItem] = useState<HistoryItem | null>(null);
   const [jsonCopied, setJsonCopied] = useState(false);
   const [mdCopied, setMdCopied] = useState(false);
-
-  useEffect(() => {
-    setHistoryItems(loadHistory());
-  }, []);
 
   const filteredItems = filter === "all"
     ? historyItems
