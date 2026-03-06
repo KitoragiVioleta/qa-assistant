@@ -14,6 +14,7 @@
   --border: #2a2d3a;
   --success: #22c55e;
   --error: #ef4444;
+  --warning: #f97316;
   --code-bg: #0b1020;
   --context-accent: #4f8ef7;
   --input-accent: #7b5ea7;
@@ -34,6 +35,7 @@
   --color-border: var(--border);
   --color-success: var(--success);
   --color-error: var(--error);
+  --color-warning: var(--warning);
   --color-code-bg: var(--code-bg);
   --color-context-accent: var(--context-accent);
   --color-input-accent: var(--input-accent);
